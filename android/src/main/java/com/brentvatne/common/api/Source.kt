@@ -255,8 +255,8 @@ class Source {
                     if (propSrcHeadersArray.size() > 0) {
                         for (i in 0 until propSrcHeadersArray.size()) {
                             val current = propSrcHeadersArray.getMap(i)
-                            val key = if (current.hasKey("key")) current.getString("key") else null
-                            val value = if (current.hasKey("value")) current.getString("value") else null
+                            val key = if (current?.hasKey("key") ?: false) current?.getString("key") else null
+                            val value = if (current?.hasKey("value") ?: false) current?.getString("value") else null
                             if (key != null && value != null) {
                                 source.headers[key] = value
                             }

@@ -37,14 +37,16 @@ data class CMCDProps(
 
             return (0 until array.size()).mapNotNull { i ->
                 val item = array.getMap(i)
-                val key = item.getString("key")
-                val value = when (item.getType("value")) {
-                    ReadableType.Number -> item.getDouble("value")
-                    ReadableType.String -> item.getString("value")
-                    else -> null
+                if (item != null) {
+                    val key = item.getString("key")
+                    val value = when (item.getType("value")) {
+                        ReadableType.Number -> item.getDouble("value")
+                        ReadableType.String -> item.getString("value")
+                        else -> null
+                    }
+                    if (key != null && value != null) Pair(key, value)
                 }
-
-                if (key != null && value != null) Pair(key, value) else null
+                null
             }
         }
     }
